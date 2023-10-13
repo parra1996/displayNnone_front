@@ -4,13 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './containers/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmpleadosComponent } from './components/empleados/empleados.component';
-import { EmpresasComponent } from './components/empresas/empresas.component';
-import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { DashboardComponent } from './containers/dashboard/dashboard.component';
+import { EmpleadosComponent } from './containers/empleados/empleados.component';
+import { EmpresasComponent } from './containers/empresas/empresas.component';
+import { PedidosComponent } from './containers/pedidos/pedidos.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { PedidosComponent } from './components/pedidos/pedidos.component';
     DashboardComponent,
     EmpleadosComponent,
     EmpresasComponent,
-    PedidosComponent
+    PedidosComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { PedidosComponent } from './components/pedidos/pedidos.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

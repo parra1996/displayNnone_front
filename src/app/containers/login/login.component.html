@@ -1,0 +1,21 @@
+<div>
+    <form  [formGroup]="form" (ngSubmit)="Login()">
+        <div>
+            <label>Username</label>
+            <input type="text" formControlName='username'/>
+        </div>
+        <div>
+            <label>Password</label>
+            <input type="text" class="form-control" formControlName='password'/>
+        </div>
+        <button type="submit">
+            <mat-spinner diameter="15"></mat-spinner>
+            Log In
+        </button>
+    </form>
+    <div *ngIf="error">
+        Hubo un error en el login
+    </div>
+</div>
+
+

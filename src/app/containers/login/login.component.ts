@@ -10,9 +10,13 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
-   public form: FormGroup;
-   public data: unknown;
-   dataService$!: Subscription;
+    dataService$!: Subscription;
+
+    public form: FormGroup;
+    public data: unknown;
+    public error: boolean = false;
+    public errorMessage:string = '';
+    public isLoading:boolean = false
 
   constructor(
     private loginService : LoginService,
@@ -31,16 +35,21 @@ export class LoginComponent  {
 
   public Login(){
     const formData = this.form.value;
+    this.isLoading = true;
     this.loginService.login(formData).subscribe({
       next: (data)=> {
+        console.log(data)
         localStorage.setItem('token', data.token);
         this.loginService.setData(data);
       },
       error: errorData => {
-        console.log(errorData)
+        this.error = true;
+        this.errorMessage = errorData;
+        this.isLoading = false;
       },
       complete: ()=> {
         console.log('Login succesfully');
+        this.isLoading = false;
         this.navigate.navigateByUrl('/');
         this.form.reset()
       }

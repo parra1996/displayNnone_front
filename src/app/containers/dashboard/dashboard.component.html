@@ -1,0 +1,15 @@
+<div class="navbar">
+    
+    <div class="navbarIzq">
+        <ul>
+            <li [routerLink]="['login']">login</li>
+            <li [routerLink]="['empresas']">empresas</li>
+            <li [routerLink]="['pedidos']">Pedidos</li>
+            <li [routerLink]="['empleados']">Empleados</li>
+            <li *ngIf="isConnected" (click)="signOut()">Desconectarse</li>
+        </ul>
+    </div>
+    <div class="navbarMid"></div>
+    <div class="navbarDer"></div>
+   
+</div>

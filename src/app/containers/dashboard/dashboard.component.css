@@ -1,0 +1,44 @@
+.navbar {
+    height: 10em;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightblue;
+}
+
+.navbarIzq {
+    height: 10em;
+    width: 33.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightcyan;
+}
+
+.navbarMid {
+    height: 10em;
+    width: 33.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightsalmon;
+}
+
+.navbarDer {
+    height: 10em;
+    width: 33.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightseagreen;
+}
