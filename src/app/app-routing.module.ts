@@ -10,14 +10,18 @@ import { isAuthorized } from './guards/isAuth';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: '', redirectTo:'/login', pathMatch: 'full'},
   {
     path: 'empresas',
     component: EmpresasComponent,
     canActivate: [login]
   },
-  {path: 'pedidos', component: PedidosComponent},
+  {
+    path: 'pedidos',
+    component: PedidosComponent,
+    canActivate: [login]
+},
   {path: 'empleados', component: EmpleadosComponent},
-  // {path: '', redirectTo:'/login', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -28,18 +32,6 @@ export class AppRoutingModule {
 
   userData: User = {};
 
-  // constructor(private userRole: LoginService,){
-  //    this.userRole.getData().subscribe({
-  //       next: user => {
-  //         if(user !== undefined){
-  //           console.log(user)
-  //           this.userData! = user;
-  //         }
-  //       },
-  //       error: userError => {
-  //         console.log(userError)
-  //       }
-  //     }) }
 };
 
 export interface User {

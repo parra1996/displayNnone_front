@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, throwError, catchError, BehaviorSubject } from 'rxjs';
 import { UserData, loginData } from './login.types';
 import { createHeader } from 'src/app/utils';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService implements OnDestroy{
   
   userData = new BehaviorSubject<any>(null);
   private url = 'http://localhost:5000/users/@';
@@ -35,8 +35,13 @@ export class LoginService {
 
   getData(){
     return this.userData.asObservable();
+    
   }
 
+  ngOnDestroy(): void {
+    this.setData(null);
+    
+  }
   
 }
 

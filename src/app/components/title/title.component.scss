@@ -1,0 +1,23 @@
+.title {
+    height: 5em;
+    width: auto;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    margin-left: .5em;
+}
+
+.message {
+    font-size: 3em;
+    font-weight: bolder;
+    color: rgb(90, 90, 194);
+}
+
+.mat-divider {
+    border-top-width: 2px;
+    border-top-color: gray;
+    margin-left: .5em;
+    margin-right: .5em;
+}

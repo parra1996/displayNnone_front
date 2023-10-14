@@ -13,6 +13,12 @@ import { EmpresasComponent } from './containers/empresas/empresas.component';
 import { PedidosComponent } from './containers/pedidos/pedidos.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { TitleComponent } from './components/title/title.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     EmpleadosComponent,
     EmpresasComponent,
     PedidosComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,12 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

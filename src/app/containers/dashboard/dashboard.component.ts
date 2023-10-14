@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { LoginService } from '../login/api.service';
-import { Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnDestroy{
+export class DashboardComponent {
 
  private route = inject(Router);
  public isConnected: boolean = false; 
@@ -30,12 +30,8 @@ export class DashboardComponent implements OnDestroy{
     else this.isConnected = false
   }
 
-  // ngOnInit(): void {
-  //   console.log(this.isConnected)
-  // }
-
   public signOut(){
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.userData.setData(null);
     this.isConnected = false;
     this.route.navigateByUrl('/login')
