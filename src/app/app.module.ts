@@ -19,6 +19,8 @@ import { TitleComponent } from './components/title/title.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

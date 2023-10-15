@@ -52,4 +52,14 @@ export class PedidosServiceService  {
     )
     
   }
+
+  public createOrder(data:any): Observable<any>{
+    console.log(data)
+    return this.httpPedido.post<any>(this.url, data, createHeader())
+    .pipe(
+       map(data=> {
+        console.log(data)
+       })
+    )
+  }
 }

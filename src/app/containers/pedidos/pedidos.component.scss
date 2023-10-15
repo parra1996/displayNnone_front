@@ -1,18 +1,63 @@
 .pedidos {
-    height: 37em;
-    width: 100vw;
+    height: 60em;
+    width: auto;
 
     margin: 0;
     padding: 0;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
+    background-color: greenyellow;
+}
+
+.pedidosTop {
+    height: 37em;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+}
+
+.orderTable {
+    width: auto;
+    overflow-y: scroll;
+    height: 30em;
+
+    margin-bottom: 2em;
+}
+
+.pedidosDown {
+    height: 30em;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightcoral;
+}
+
+.orderForm {
+    height: 30em;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    // background-color: blue;
 }
 
 table {
-    width: 100%;
+    width: auto;
     border-collapse: collapse;
 }
 

@@ -25,18 +25,12 @@ export class LoginComponent  {
       this.form = new FormGroup({
         username:new  FormControl(),
         password:new  FormControl(),
-      })
+      });
       this.loginService.getData().subscribe({
         next: user=> {
-          console.log(user)
         }
-      })
+      });
     }
-
-    // ngOnInit(): void {
-    //  const userData = this.loginService.getData()
-    //  console.log(userData)
-    // }
 
   public Login(){
     const formData = this.form.value;

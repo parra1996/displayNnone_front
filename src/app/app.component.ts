@@ -15,6 +15,5 @@ export class AppComponent implements OnDestroy{
   ngOnDestroy(): void {
     this.route.navigateByUrl('/login');
     sessionStorage.removeItem('token');
-    console.log("se ejecuto")
   }
 }

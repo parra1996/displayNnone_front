@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { PedidosServiceService } from './pedidos-service.service';
-
+import { transformDate } from 'src/app/utils';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -8,34 +9,39 @@ import { PedidosServiceService } from './pedidos-service.service';
 })
 export class PedidosComponent implements OnInit {
   public title:string = 'Envios';
+  isLoading: boolean = false;
   public orders: any;
-
   public tableRows = [
-    "addressee",
-    "adreesseeEmail",
-    "clientEmail",
-    "clientLastname",
     "clientName",
-    "companyEmail",
-    "name",
+    "addressee",
+    "direction",
+    "zip",
     "price",
     "weight",
-    "pedrito"
-  ]
+    "date",
+    "order_type",
+    "eliminate"
+  ];
+  public orderForm: FormGroup;
+  public transformDate = transformDate;
 
   constructor(
     private pedidoService : PedidosServiceService
-  ){}
+  ){
+    this.orderForm = new FormGroup({
+      direction: new FormControl(),
+      zip: new FormControl(),  
+      clientName: new FormControl(),
+      addressee:new FormControl() , 
+      weight:new FormControl() ,
+      price:new FormControl() 
+    });
+  };
 
   ngOnInit(): void {
     this.bringOrders()
   }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if(changes['orders'] && this.orders){
-  //     this.bringOrders();
-  //   }
-  // }
   private bringOrders(){
     this.pedidoService.getOrders().subscribe({
       next: allOrders => {
@@ -59,6 +65,40 @@ export class PedidosComponent implements OnInit {
         this.bringOrders();
       }
     })
+  }
+  public createOrder(){
+    this.isLoading = true;
+    this.calculateOrder(this.orderForm.value)
+     this.pedidoService.createOrder(this.orderForm.value).subscribe({
+      next: data=> {
+      },
+      error: error=> {
+        this.isLoading = false;
+        console.log(error)
+      },
+      complete:()=> {
+        this.isLoading = false;
+        this.bringOrders();
+        this.orderForm.reset();
+      }
+     })
+  }
+
+  private calculateOrder(order: any){
+    const { weight} = order;
+
+    switch(true){
+      case (weight <= 0.1):
+        return this.orderForm.value.price = weight * 5, this.orderForm.value.order_type = 'paquete ultra ligero';
+      case (weight >= 0.1 && weight <= 0.3):
+        return this.orderForm.value.price = weight * 5 + 1, this.orderForm.value.order_type = 'paquete ligero';
+      case (weight >= 0.3 && weight <= 5):
+        return this.orderForm.value.price = weight * 10, this.orderForm.value.order_type = 'paquete estandar';
+      case (weight >= 5 && weight <= 10):
+          return this.orderForm.value.price = weight * 5 + weight + 75 , this.orderForm.value.order_type = 'paquete pesado';
+      case (weight >= 10):
+          return this.orderForm.value.price = (weight - 10) * 75 +130 + weight , this.orderForm.value.order_type = 'paquete pesado';
+    }
   }
 
 }
