@@ -5,8 +5,6 @@ import { EmpresasComponent } from './containers/empresas/empresas.component';
 import { EmpleadosComponent } from './containers/empleados/empleados.component';
 import { PedidosComponent } from './containers/pedidos/pedidos.component';
 import { login } from './guards/login';
-import { LoginService } from './containers/login/api.service';
-import { isAuthorized } from './guards/isAuth';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},

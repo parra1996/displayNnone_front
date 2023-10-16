@@ -1,1 +1,54 @@
-<p>empresas works!</p>
+<app-title [title]="title"></app-title>
+
+<div class="empresas">
+    <div class="empresasIzq">
+        <table mat-table [dataSource]="companies" class="mat-elevation-z8" *ngIf="companies">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> name </th>
+                    <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="updateName">
+                    <th mat-header-cell *matHeaderCellDef> update Name </th>
+                    <td mat-cell *matCellDef="let user"> <input matInput [formControl]='body.name' placeholder="update name"/></td>
+                </ng-container>
+                <ng-container matColumnDef="zip">
+                    <th mat-header-cell *matHeaderCellDef> zip </th>
+                    <td mat-cell *matCellDef="let user"> {{user.zip}} </td>
+                </ng-container>
+                <ng-container matColumnDef="updateZip">
+                    <th mat-header-cell *matHeaderCellDef> update Zip </th>
+                    <td mat-cell *matCellDef="let user"> <input matInput [formControl]="body.zip" placeholder="update zip"/> </td>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> delete</th>
+                    <td mat-cell (click)="deleteCompanie(user.id)" *matCellDef="let user" style="cursor: pointer;">  <mat-icon>highlight_off</mat-icon> </td>
+                </ng-container>
+                <ng-container matColumnDef="update">
+                    <th mat-header-cell *matHeaderCellDef> update</th>
+                    <td mat-cell (click)="updateCompanie(user.id)" *matCellDef="let user" style="cursor: pointer;">  <mat-icon>update</mat-icon> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="tableRows"></tr>
+                <tr mat-row  *matRowDef="let myRowData; columns: tableRows"></tr>
+            </table>
+    </div>
+    <div class="empresasDer">
+         <form [formGroup]="newCompanie" (submit)="createCompanie()">
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>name</mat-label>
+                    <input matInput formControlName='name'>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>zip</mat-label>
+                    <input matInput formControlName='zip'>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button type="submit" color="accent">
+            <mat-spinner diameter="15" *ngIf="isLoading" ></mat-spinner>
+            create companie
+            </button>
+            </form>
+    </div>
+</div>
