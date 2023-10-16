@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  LoginService } from './api.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {  Router } from '@angular/router';
 import { Subscription } from 'rxjs'
 
@@ -23,8 +23,8 @@ export class LoginComponent  {
     private navigate : Router,
     ){
       this.form = new FormGroup({
-        username:new  FormControl(),
-        password:new  FormControl(),
+        username:new  FormControl('', Validators.required),
+        password:new  FormControl('', [Validators.required, Validators.minLength(6)]),
       });
       this.loginService.getData().subscribe({
         next: user=> {
@@ -54,5 +54,12 @@ export class LoginComponent  {
       }
     })
 
+  }
+
+  get username(){
+    return this.form.get('username') as FormControl;
+  }
+  get password(){
+    return this.form.get('password') as FormControl;
   }
 }

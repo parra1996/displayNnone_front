@@ -5,15 +5,28 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Username</mat-label>
                 <input matInput formControlName='username'>
-            </mat-form-field>
+            </mat-form-field >
+            <div [hidden]="username.valid || form.pristine">
+                <span style="color: red;" *ngIf="password?.errors?.['required'] ">
+                el usuario es obligatorio
+                </span>
+            </div>
         </div>
-       <div>
-          <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName='password'>
-        </mat-form-field>
-       </div>
-       <button mat-raised-button type="submit" color="accent">
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName='password'>
+                </mat-form-field>
+                  <div [hidden]="password?.valid || password.pristine"> 
+                    <span style="color: red;" *ngIf="password?.errors?.['required'] ">
+                            la contraseña es obligatoria
+                    </span>
+                    <span style="color: red;" *ngIf="password?.errors?.['minLength'] ">
+                            la contraseña es de minimo 6 caracteres
+                    </span>
+                  </div>
+            </div>
+       <button mat-raised-button type="submit" color="accent" [hidden]="form.valid">
             <mat-spinner diameter="15" *ngIf="isLoading" ></mat-spinner>
             Log In
        </button>
@@ -22,7 +35,7 @@
         Hubo un error en el login
     </div>
     </ng-container>
-    
 </div>
-
-
+{{
+    password?.errors?.['minLength'] | json
+}}
