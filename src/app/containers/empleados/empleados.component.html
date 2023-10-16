@@ -1,1 +1,22 @@
-<p>empleados works!</p>
+<app-title [title]="title"></app-title>
+
+<div class="empleados">
+    <div class="empleadosTable">
+        <table mat-table [dataSource]="users" class="mat-elevation-z8 " *ngIf="users">
+           <ng-container matColumnDef="id">
+               <th mat-header-cell *matHeaderCellDef> id </th>
+               <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+           </ng-container>
+           <ng-container matColumnDef="username">
+               <th mat-header-cell *matHeaderCellDef> username </th>
+               <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+           </ng-container>
+           <ng-container matColumnDef="role">
+               <th mat-header-cell *matHeaderCellDef> role </th>
+               <td mat-cell *matCellDef="let user"> {{user.role}}</td>
+           </ng-container>
+           <tr mat-header-row *matHeaderRowDef="tableRows"></tr>
+           <tr mat-row  *matRowDef="let myRowData; columns: tableRows"></tr>
+       </table>
+    </div>
+</div>

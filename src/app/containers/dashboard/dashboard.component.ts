@@ -26,7 +26,8 @@ export class DashboardComponent {
   };
 
   private isUserConnected = (isConnected:boolean) => {
-    if(isConnected) this.isConnected = true;
+    const token = sessionStorage.getItem('token'); // TODO
+    if(isConnected && token) this.isConnected = true;
     else this.isConnected = false
   }
 

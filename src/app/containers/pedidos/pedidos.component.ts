@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { PedidosServiceService } from './pedidos-service.service';
 import { transformDate } from 'src/app/utils';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PedidoInterface } from './pedidos.type';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -10,7 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class PedidosComponent implements OnInit {
   public title:string = 'Envios';
   isLoading: boolean = false;
-  public orders: any;
+  public orders: PedidoInterface[] = [];
   public tableRows = [
     "clientName",
     "addressee",
@@ -45,6 +46,7 @@ export class PedidosComponent implements OnInit {
   private bringOrders(){
     this.pedidoService.getOrders().subscribe({
       next: allOrders => {
+        console.log(allOrders)
         this.orders = allOrders;
       },
       error: error=>{
@@ -54,7 +56,7 @@ export class PedidosComponent implements OnInit {
     })
   }
 
-  public deleteOrder(data:any){
+  public deleteOrder(data:number){
     this.pedidoService.deleteOrder(data).subscribe({
       next: orderDelete=> {
       },
@@ -84,9 +86,8 @@ export class PedidosComponent implements OnInit {
      })
   }
 
-  private calculateOrder(order: any){
-    const { weight} = order;
-
+  private calculateOrder(order:PedidoInterface){
+    const { weight }: PedidoInterface= order;
     switch(true){
       case (weight <= 0.1):
         return this.orderForm.value.price = weight * 5, this.orderForm.value.order_type = 'paquete ultra ligero';

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService} from './empresa-service.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SnackbarService } from 'src/app/snackbar.service';
+import { EmpresaType } from './empresas.types';
 
 @Component({
   selector: 'app-empresas',
@@ -22,11 +24,12 @@ export class EmpresasComponent implements OnInit{
     "delete",
     "update"
   ];
-  public companies: any
+  public companies: EmpresaType[] = [];
   public newCompanie: FormGroup;
 
   constructor(
-    private empresaService : EmpresaService
+    private empresaService : EmpresaService,
+    private snackbar: SnackbarService,
   ){
    this.newCompanie = new FormGroup({
     name: new FormControl(''),
@@ -42,6 +45,7 @@ export class EmpresasComponent implements OnInit{
     this.isLoading = true
     this.empresaService.bringCompanies().subscribe({
       next: allOrders => {
+        console.log( allOrders)
         this.companies = allOrders;
       },
       error: error=>{
@@ -52,8 +56,7 @@ export class EmpresasComponent implements OnInit{
     })
   }
 
-    public deleteCompanie(data:any){
-
+    public deleteCompanie(data:number){
     this.empresaService.deleteOrder(data).subscribe({
       next: orderDelete=> {
       },
@@ -62,14 +65,17 @@ export class EmpresasComponent implements OnInit{
       },
       complete: ()=> {
         this.bringCompanies();
+        this.snackbar.open({
+          message: 'Companie deleted'
+        })
       }
     })
   }
 
-  public updateCompanie(data:any):void {
-    const body = {
-      name: this.body.name.value,
-      zip: this.body.zip.value,
+  public updateCompanie(data:number):void {
+    const body:EmpresaType = {
+      name: this.body.name.value as string,
+      zip: this.body.zip.value as string,
     }
      this.empresaService.updateCompanie(data,body)
      .subscribe({
@@ -82,6 +88,7 @@ export class EmpresasComponent implements OnInit{
         this.bringCompanies();
         this.body.name.reset();
         this.body.zip.reset();
+        this.snackbar.open({message: 'Empresa Actualizada'})
       }
     })
   }
@@ -103,3 +110,5 @@ export class EmpresasComponent implements OnInit{
      })
   }
 }
+
+

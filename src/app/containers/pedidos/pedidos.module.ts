@@ -4,8 +4,6 @@ import { PedidosComponent } from './pedidos.component';
 import { SharedModule } from 'src/app/components/shared.module';
 import { PedidosRoutingModule } from './app-routing.module';
 
-
-
 @NgModule({
   declarations: [PedidosComponent],
   imports: [

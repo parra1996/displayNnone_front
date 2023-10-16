@@ -1,5 +1,5 @@
 .pedidos {
-    height: 60em;
+    height: 37em;
     width: auto;
 
     margin: 0;
@@ -10,48 +10,48 @@
     justify-content: center;
     align-items: center;
 
-    background-color: greenyellow;
 }
 
 .pedidosTop {
-    height: 37em;
+    height: 70%;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: pink;
 }
 
 .orderTable {
     width: auto;
     overflow-y: scroll;
     height: 30em;
-
     margin-bottom: 2em;
 }
 
 .pedidosDown {
-    height: 30em;
+    height: 30%;
     width: 100%;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    background-color: lightcoral;
 }
 
 .orderForm {
-    height: 30em;
+    height: 100%;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 table {
@@ -63,5 +63,9 @@ th,
 td {
     border: 1px solid black;
     padding: 5px;
-    text-align: left;
+    text-align: center;
+}
+
+.marginField {
+    margin: .5em;
 }

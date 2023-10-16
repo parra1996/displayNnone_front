@@ -11,11 +11,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    TitleComponent
+    TitleComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatTableModule,
     MatSnackBarModule,
+    TableComponent
   ]
 })
 export class SharedModule { }

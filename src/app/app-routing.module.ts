@@ -4,10 +4,13 @@ import { login } from './guards/login';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: ()=> import('./containers/home/home.module').then( m=> m.HomeModule)
+  },
+  {
     path: 'login',
     loadChildren: ()=> import('./containers/login/login.module').then( m=> m.LoginModule)
   },
-  {path: '', redirectTo:'/login', pathMatch: 'full'},
   {
     path: 'empresas',
     loadChildren: ()=> import('./containers/empresas/empresas.module').then( m=> m.EmpresasModule),
@@ -30,8 +33,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {};
-
-export interface User {
-  token?:string,
-  user?: any
-}

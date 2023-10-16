@@ -1,0 +1,35 @@
+<app-title [title]="title"></app-title>
+<div class="home">
+    <div class="homeTable">
+         <table>
+            <tr>
+                <th>Tipos de paquete</th>
+                <th>Intervalo de kg</th>
+                <th>Forma calculo de precio</th>
+            </tr>
+            <tr>
+                <td>Paquete ultra ligero</td>
+                <td>0 &lt; kg &lt;= 0.1</td>
+                <td>Precio = kg * 5</td>
+            </tr>
+             <tr>
+                <td>Paquete ligero</td>
+                <td>0.1 &lt; kg &lt;= 0.3;</td>
+                <td>Precio = kg * 5 + 1</td>
+            </tr>
+            <tr>
+                <td>Paquete estándar</td>
+                <td>0.3 &lt; kg &lt;= 5</td>
+                <td>Precio = kg * 10</td>
+            <tr>
+                <td>Paquete pesado</td>
+                <td>5 &lt; kg &lt;= 10</td>
+                <td>Precio = kg * 5 + kg + 75</td>
+            <tr>
+                <td>Gran volumen</td>
+                <td>10 &lt; kg &lt;= &#x221e;</td>
+                <td>Precio = (kg−10)×7.5 + 130 + kg</td>
+            </tr>
+        </table>
+    </div>
+</div>

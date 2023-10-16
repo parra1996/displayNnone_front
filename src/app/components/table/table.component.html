@@ -1,0 +1,18 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
+    <mat-header-cell *matHeaderCellDef>{{ column }}</mat-header-cell>
+    <mat-cell *matCellDef="let element; let j = index">
+      <ng-container *ngIf="!allowInput; else inputField">
+        {{ element[column] }}
+      </ng-container>
+      <ng-template #inputField>
+        <input [(ngModel)]="dataSource[j][column]" [name]="column" type="text">
+      </ng-template>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns">
+    <button mat-icon-button (click)="onButtonClick(row)">edit</button>
+  </mat-row>
+</mat-table>

@@ -1,0 +1,23 @@
+.empleados {
+    height: 37em;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empleadosTable {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 25em;
+    overflow-y: auto;
+    height: 30em;
+}
