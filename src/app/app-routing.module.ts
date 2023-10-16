@@ -1,36 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './containers/login/login.component';
-import { EmpresasComponent } from './containers/empresas/empresas.component';
-import { EmpleadosComponent } from './containers/empleados/empleados.component';
-import { PedidosComponent } from './containers/pedidos/pedidos.component';
 import { login } from './guards/login';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {
+    path: 'login',
+    loadChildren: ()=> import('./containers/login/login.module').then( m=> m.LoginModule)
+  },
   {path: '', redirectTo:'/login', pathMatch: 'full'},
   {
     path: 'empresas',
-    component: EmpresasComponent,
+    loadChildren: ()=> import('./containers/empresas/empresas.module').then( m=> m.EmpresasModule),
     canActivate: [login]
   },
   {
     path: 'pedidos',
-    component: PedidosComponent,
+    loadChildren: ()=> import('./containers/pedidos/pedidos.module').then( m=> m.PedidosModule),
     canActivate: [login]
 },
-  {path: 'empleados', component: EmpleadosComponent},
+  {
+    path: 'empleados',
+    loadChildren: ()=> import('./containers/empleados/empleados.module').then( m=> m.EmpleadosModule),
+    canActivate: [login]
+    },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-
-  userData: User = {};
-
-};
+export class AppRoutingModule {};
 
 export interface User {
   token?:string,
