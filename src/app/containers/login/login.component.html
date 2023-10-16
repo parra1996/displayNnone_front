@@ -17,7 +17,7 @@
                     <mat-label>Password</mat-label>
                     <input matInput formControlName='password'>
                 </mat-form-field>
-                  <div [hidden]="password?.valid || password.pristine"> 
+                  <div [hidden]="password.valid || password.pristine"> 
                     <span style="color: red;" *ngIf="password?.errors?.['required'] ">
                             la contraseña es obligatoria
                     </span>
@@ -36,6 +36,3 @@
     </div>
     </ng-container>
 </div>
-{{
-    password?.errors?.['minLength'] | json
-}}
