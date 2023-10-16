@@ -30,11 +30,10 @@ export class EmpleadosComponent implements OnInit{
     this.empleadosService.bringUsers()
     .subscribe({
       next: users => {
-        console.log(users)
         this.users = users;
       },
       error: error=>{
-        console.log(error)
+        return(error)
       },
       complete: ()=> {
         this.isLoading = false;

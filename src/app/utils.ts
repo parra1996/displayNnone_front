@@ -11,3 +11,5 @@ export const createHeader = () => {
   export const transformDate = (date: string)=> {
     return (moment(date).utc().format('YYYY-MM-DD')); 
   }
+
+  export const cloudUrl = 'https://displaynone-back.onrender.com'

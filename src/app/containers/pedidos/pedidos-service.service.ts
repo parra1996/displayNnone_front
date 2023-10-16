@@ -2,7 +2,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
 import { LoginService } from '../login/api.service';
-import { createHeader } from 'src/app/utils';
+import { cloudUrl, createHeader } from 'src/app/utils';
 import { NewPedidoInterface } from './pedidos.type';
 
 @Injectable({
@@ -19,13 +19,13 @@ export class PedidosServiceService  {
       this.bringUserData()
     }
 
-   private url = 'http://localhost:5000/order/';
+   private url = `${cloudUrl}/order/`
 
   private bringUserData(){
     this.userData.getData().subscribe({
       next: data=> this.userID = data,
       error: error=> {
-        console.log(error)
+        return(error)
       },
       complete:()=> {
         console.log('datos traidos en pedidos')
@@ -42,7 +42,7 @@ export class PedidosServiceService  {
   };
 
   public deleteOrder(data:number):Observable<any>{
-    const altUrl = `http://localhost:5000/order/${data}`;
+    const altUrl = `${cloudUrl}/order/${data}`;
     return this.httpPedido.delete<string>(altUrl, createHeader())
     .pipe(
        map(data=> {

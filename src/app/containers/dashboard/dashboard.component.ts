@@ -20,7 +20,7 @@ export class DashboardComponent {
         this.isUserConnected(data)
       },
       error: errorData => {
-        console.log(errorData)
+        return (errorData)
       },
     })
   };

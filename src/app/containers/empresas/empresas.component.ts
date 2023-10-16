@@ -45,11 +45,10 @@ export class EmpresasComponent implements OnInit{
     this.isLoading = true
     this.empresaService.bringCompanies().subscribe({
       next: allOrders => {
-        console.log( allOrders)
         this.companies = allOrders;
       },
       error: error=>{
-        console.log(error)
+        return(error)
       },
       complete: ()=> 
       this.isLoading = false
@@ -61,7 +60,7 @@ export class EmpresasComponent implements OnInit{
       next: orderDelete=> {
       },
       error: orderDeleteError => {
-        console.log(orderDeleteError)
+        return(orderDeleteError)
       },
       complete: ()=> {
         this.bringCompanies();

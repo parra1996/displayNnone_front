@@ -26,7 +26,7 @@
                     </span>
                   </div>
             </div>
-       <button mat-raised-button type="submit" color="accent" [hidden]="form.valid">
+       <button mat-raised-button type="submit" color="accent" [disabled]="form.invalid">
             <mat-spinner diameter="15" *ngIf="isLoading" ></mat-spinner>
             Log In
        </button>

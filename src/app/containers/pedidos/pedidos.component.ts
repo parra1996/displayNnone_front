@@ -46,7 +46,6 @@ export class PedidosComponent implements OnInit {
   private bringOrders(){
     this.pedidoService.getOrders().subscribe({
       next: allOrders => {
-        console.log(allOrders)
         this.orders = allOrders;
       },
       error: error=>{
