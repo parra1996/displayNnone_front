@@ -4,20 +4,9 @@ import { EmpleadosComponent } from './empleados.component';
 import { SharedModule } from 'src/app/components/shared.module';
 import { EmpleadosRoutingModule } from './app-routing.module';
 
-
-
 @NgModule({
-  declarations: [
-    EmpleadosComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    EmpleadosRoutingModule
-  ],
-  exports: [
-    EmpleadosComponent,
-    EmpleadosRoutingModule
-  ]
+  declarations: [EmpleadosComponent],
+  imports: [CommonModule, SharedModule, EmpleadosRoutingModule],
+  exports: [EmpleadosComponent, EmpleadosRoutingModule],
 })
-export class EmpleadosModule { }
+export class EmpleadosModule {}

@@ -11,10 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-  ],
+  declarations: [AppComponent, DashboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,10 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PedidosModule,
     SharedModule,
   ],
-  exports: [
-    SharedModule,
-  ],
+  exports: [SharedModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

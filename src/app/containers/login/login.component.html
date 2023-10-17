@@ -1,38 +1,36 @@
 <div class="login">
-    <ng-container >
-        <form  [formGroup]="form" (ngSubmit)="Login()">
-        <div>
-            <mat-form-field class="example-full-width">
-                <mat-label>Username</mat-label>
-                <input matInput formControlName='username'>
-            </mat-form-field >
-            <div [hidden]="username.valid || form.pristine">
-                <span style="color: red;" *ngIf="password?.errors?.['required'] ">
-                el usuario es obligatorio
-                </span>
-            </div>
+  <ng-container>
+    <form [formGroup]="form" (ngSubmit)="Login()">
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" />
+        </mat-form-field>
+        <div [hidden]="username.valid || form.pristine">
+          <span style="color: red" *ngIf="password?.errors?.['required']">
+            el usuario es obligatorio
+          </span>
         </div>
-            <div>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Password</mat-label>
-                    <input type="password" formControlName='password'>
-                </mat-form-field>
-                  <div [hidden]="password.valid || password.pristine"> 
-                    <span style="color: red;" *ngIf="password?.errors?.['required'] ">
-                            la contraseña es obligatoria
-                    </span>
-                    <span style="color: red;" *ngIf="password?.errors?.['minLength'] ">
-                            la contraseña es de minimo 6 caracteres
-                    </span>
-                  </div>
-            </div>
-       <button mat-raised-button type="submit" color="accent" [disabled]="form.invalid">
-            <mat-spinner diameter="15" *ngIf="isLoading" ></mat-spinner>
-            Log In
-       </button>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+        <div [hidden]="password.valid || password.pristine">
+          <span style="color: red" *ngIf="password?.errors?.['required']">
+            la contraseña es obligatoria
+          </span>
+          <span style="color: red" *ngIf="password?.errors?.['minLength']">
+            la contraseña es de minimo 6 caracteres
+          </span>
+        </div>
+      </div>
+      <button mat-raised-button type="submit" color="accent" [disabled]="form.invalid">
+        <mat-spinner diameter="15" *ngIf="isLoading"></mat-spinner>
+        Log In
+      </button>
     </form>
-    <div *ngIf="error">
-        Hubo un error en el login
-    </div>
-    </ng-container>
+    <div *ngIf="error">Hubo un error en el login</div>
+  </ng-container>
 </div>

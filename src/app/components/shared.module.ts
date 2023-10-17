@@ -12,13 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TableComponent } from './table/table.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [
-    SpinnerComponent,
-    TitleComponent,
-    TableComponent
-  ],
+  declarations: [SpinnerComponent, TitleComponent, TableComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +28,7 @@ import { TableComponent } from './table/table.component';
     MatIconModule,
     MatTableModule,
     MatSnackBarModule,
+    MatFormFieldModule,
   ],
   exports: [
     SpinnerComponent,
@@ -45,7 +43,8 @@ import { TableComponent } from './table/table.component';
     MatIconModule,
     MatTableModule,
     MatSnackBarModule,
-    TableComponent
-  ]
+    TableComponent,
+    MatFormFieldModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

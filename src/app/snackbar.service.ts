@@ -7,22 +7,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SnackbarService {
   constructor(private snackBar: MatSnackBar) {}
 
-  open({
-    message,
-    duration = 2000,
-    action, 
-    error = false
-  }:SnackBar) {
+  open({ message, duration = 2000, action, error = false }: SnackBar) {
     this.snackBar.open(`${message}`, action, {
       duration,
-      panelClass: error ?  ['red-snackbar'] : ['green-snackbar']
+      panelClass: error ? ['red-snackbar'] : ['green-snackbar'],
     });
   }
 }
 
 interface SnackBar {
-  message?: string,
-  action?: string ,
-  duration?: number,
-  error?: boolean
+  message?: string;
+  action?: string;
+  duration?: number;
+  error?: boolean;
 }

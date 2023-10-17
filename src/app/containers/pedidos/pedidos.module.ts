@@ -6,14 +6,7 @@ import { PedidosRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [PedidosComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    PedidosRoutingModule
-  ],
-  exports: [
-    PedidosComponent,
-    PedidosRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, PedidosRoutingModule],
+  exports: [PedidosComponent, PedidosRoutingModule],
 })
-export class PedidosModule { }
+export class PedidosModule {}

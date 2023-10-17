@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmpleadosComponent } from './empleados.component';
 
 const routes: Routes = [
-    {
-        path:'',
-        component: EmpleadosComponent
-    },
+  {
+    path: '',
+    component: EmpleadosComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmpleadosRoutingModule {};
+export class EmpleadosRoutingModule {}

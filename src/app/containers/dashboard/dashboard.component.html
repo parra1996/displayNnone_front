@@ -1,17 +1,15 @@
 <div class="navbar">
-    
-    <div class="navbarIzq">
-        <h1>DISPLAY NONE</h1>
-    </div>
-    <div class="navbarDer">
-        <ul>
-        <li [routerLink]="['']">Home</li>
-        <li [routerLink]="['login']">login</li>
-        <li [routerLink]="['empresas']">empresas</li>
-        <li [routerLink]="['pedidos']">Pedidos</li>
-        <li [routerLink]="['empleados']">Empleados</li>
-        <li *ngIf="isConnected" (click)="signOut()">Desconectarse</li>
+  <div class="navbarIzq">
+    <h1>DISPLAY NONE</h1>
+  </div>
+  <div class="navbarDer">
+    <ul>
+      <li [routerLink]="['']">Home</li>
+      <li [routerLink]="['login']">login</li>
+      <li [routerLink]="['empresas']">empresas</li>
+      <li [routerLink]="['pedidos']">Pedidos</li>
+      <li [routerLink]="['empleados']">Empleados</li>
+      <li *ngIf="isConnected" (click)="signOut()">Desconectarse</li>
     </ul>
-    </div>
-   
+  </div>
 </div>

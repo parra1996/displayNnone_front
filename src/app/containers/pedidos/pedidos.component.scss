@@ -1,71 +1,70 @@
 .pedidos {
-    height: 37em;
-    width: auto;
+  height: 37em;
+  width: auto;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .pedidosTop {
-    height: 70%;
-    width: 100%;
+  height: 70%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .orderTable {
-    width: auto;
-    overflow-y: scroll;
-    height: 30em;
-    margin-bottom: 2em;
+  width: auto;
+  overflow-y: scroll;
+  height: 30em;
+  margin-bottom: 2em;
 }
 
 .pedidosDown {
-    height: 30%;
-    width: 100%;
+  height: 30%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .orderForm {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 table {
-    width: auto;
-    border-collapse: collapse;
+  width: auto;
+  border-collapse: collapse;
 }
 
 th,
 td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: center;
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
 }
 
 .marginField {
-    margin: .5em;
+  margin: 0.5em;
 }

@@ -1,4 +1,4 @@
 export interface EmpresaType {
-    name:string,
-    zip:string,
+  name: string;
+  zip: string;
 }

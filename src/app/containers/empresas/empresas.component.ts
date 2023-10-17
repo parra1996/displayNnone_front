@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpresaService} from './empresa-service.service';
+import { EmpresaService } from './empresa-service.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SnackbarService } from 'src/app/snackbar.service';
 import { EmpresaType } from './empresas.types';
@@ -7,107 +7,93 @@ import { EmpresaType } from './empresas.types';
 @Component({
   selector: 'app-empresas',
   templateUrl: './empresas.component.html',
-  styleUrls: ['./empresas.component.scss']
+  styleUrls: ['./empresas.component.scss'],
 })
-export class EmpresasComponent implements OnInit{
-  public title: string = "Empresas";
+export class EmpresasComponent implements OnInit {
+  public title: string = 'Empresas';
   public isLoading: boolean = false;
   public body = {
     name: new FormControl(''),
-    zip: new FormControl('')
-  }
-  public tableRows = [
-    "name",
-    "updateName",
-    "zip",
-    "updateZip",
-    "delete",
-    "update"
-  ];
+    zip: new FormControl(''),
+  };
+  public tableRows = ['name', 'updateName', 'zip', 'updateZip', 'delete', 'update'];
   public companies: EmpresaType[] = [];
   public newCompanie: FormGroup;
 
   constructor(
-    private empresaService : EmpresaService,
+    private empresaService: EmpresaService,
     private snackbar: SnackbarService,
-  ){
-   this.newCompanie = new FormGroup({
-    name: new FormControl(''),
-    zip: new FormControl('')
-   })
+  ) {
+    this.newCompanie = new FormGroup({
+      name: new FormControl(''),
+      zip: new FormControl(''),
+    });
   }
 
   ngOnInit(): void {
     this.bringCompanies();
-  };
+  }
 
-  private bringCompanies():void{
-    this.isLoading = true
+  private bringCompanies(): void {
+    this.isLoading = true;
     this.empresaService.bringCompanies().subscribe({
-      next: allOrders => {
+      next: (allOrders) => {
         this.companies = allOrders;
       },
-      error: error=>{
-        return(error)
+      error: (error) => {
+        return error;
       },
-      complete: ()=> 
-      this.isLoading = false
-    })
+      complete: () => (this.isLoading = false),
+    });
   }
 
-    public deleteCompanie(data:number){
+  public deleteCompanie(data: number) {
     this.empresaService.deleteOrder(data).subscribe({
-      next: orderDelete=> {
+      next: (orderDelete) => {},
+      error: (orderDeleteError) => {
+        return orderDeleteError;
       },
-      error: orderDeleteError => {
-        return(orderDeleteError)
-      },
-      complete: ()=> {
+      complete: () => {
         this.bringCompanies();
         this.snackbar.open({
-          message: 'Companie deleted'
-        })
-      }
-    })
+          message: 'Companie deleted',
+        });
+      },
+    });
   }
 
-  public updateCompanie(data:number):void {
-    const body:EmpresaType = {
+  public updateCompanie(data: number): void {
+    const body: EmpresaType = {
       name: this.body.name.value as string,
       zip: this.body.zip.value as string,
-    }
-     this.empresaService.updateCompanie(data,body)
-     .subscribe({
-      next: companieDelete=> {
+    };
+    this.empresaService.updateCompanie(data, body).subscribe({
+      next: (companieDelete) => {},
+      error: (orderDeleteError) => {
+        console.log(orderDeleteError);
       },
-      error: orderDeleteError => {
-        console.log(orderDeleteError)
-      },
-      complete: ()=> {
+      complete: () => {
         this.bringCompanies();
         this.body.name.reset();
         this.body.zip.reset();
-        this.snackbar.open({message: 'Empresa Actualizada'})
-      }
-    })
+        this.snackbar.open({ message: 'Empresa Actualizada' });
+      },
+    });
   }
 
-  public createCompanie():void {
+  public createCompanie(): void {
     this.isLoading = true;
-     this.empresaService.createOrder(this.newCompanie.value).subscribe({
-      next: data=> {
-      },
-      error: error=> {
+    this.empresaService.createOrder(this.newCompanie.value).subscribe({
+      next: (data) => {},
+      error: (error) => {
         this.isLoading = false;
-        console.log(error)
+        console.log(error);
       },
-      complete:()=> {
+      complete: () => {
         this.isLoading = false;
         this.bringCompanies();
         this.newCompanie.reset();
-      }
-     })
+      },
+    });
   }
 }
-
-

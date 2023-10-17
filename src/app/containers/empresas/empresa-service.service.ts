@@ -1,56 +1,49 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit, } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
 import { cloudUrl, createHeader } from 'src/app/utils';
 import { EmpresaType } from './empresas.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmpresaService {
+  constructor(private empresaService: HttpClient) {}
 
-  constructor(private empresaService : HttpClient) { };
+  private url = `${cloudUrl}/company`;
 
-   private url = `${cloudUrl}/company`;
+  public bringCompanies() {
+    return this.empresaService.get<any>(this.url).pipe(
+      catchError((error) => {
+        return throwError(() => new Error(error));
+      }),
+    );
+  }
 
- public bringCompanies(){
-   return this.empresaService.get<any>(this.url).pipe(
-        catchError(error=> {
-          return throwError(() => new Error(error))
-        })
-      )
-  };
-
-   public createOrder(data:EmpresaType): Observable<string>{
-    return this.empresaService.post<string>(this.url, data, createHeader())
-    .pipe(
-       map(data=> {
+  public createOrder(data: EmpresaType): Observable<string> {
+    return this.empresaService.post<string>(this.url, data, createHeader()).pipe(
+      map((data) => {
         return data;
-       })
-    )
+      }),
+    );
   }
 
-    public deleteOrder(data:number):Observable<any>{
-    const altUrl = `${cloudUrl}/company/${data}`
+  public deleteOrder(data: number): Observable<any> {
+    const altUrl = `${cloudUrl}/company/${data}`;
 
-    return this.empresaService.delete<string>(altUrl, createHeader())
-    .pipe(
-       map(data=> {
-        return(data)
-       })
-    )
-    
+    return this.empresaService.delete<string>(altUrl, createHeader()).pipe(
+      map((data) => {
+        return data;
+      }),
+    );
   }
 
-  public updateCompanie(data:number, body:EmpresaType): Observable<any>{
-    const altUrl = `${cloudUrl}/company/${data}`
-    return this.empresaService.put<string>(altUrl,body, createHeader())
-    .pipe(
-       map(data=> {
-        return(data)
-       })
-    )
+  public updateCompanie(data: number, body: EmpresaType): Observable<any> {
+    const altUrl = `${cloudUrl}/company/${data}`;
+    return this.empresaService.put<string>(altUrl, body, createHeader()).pipe(
+      map((data) => {
+        return data;
+      }),
+    );
   }
-
-
 }

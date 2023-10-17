@@ -5,31 +5,33 @@ import { login } from './guards/login';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: ()=> import('./containers/home/home.module').then( m=> m.HomeModule)
+    loadChildren: () => import('./containers/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'login',
-    loadChildren: ()=> import('./containers/login/login.module').then( m=> m.LoginModule)
+    loadChildren: () => import('./containers/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'empresas',
-    loadChildren: ()=> import('./containers/empresas/empresas.module').then( m=> m.EmpresasModule),
-    canActivate: [login]
+    loadChildren: () =>
+      import('./containers/empresas/empresas.module').then((m) => m.EmpresasModule),
+    canActivate: [login],
   },
   {
     path: 'pedidos',
-    loadChildren: ()=> import('./containers/pedidos/pedidos.module').then( m=> m.PedidosModule),
-    canActivate: [login]
-},
+    loadChildren: () => import('./containers/pedidos/pedidos.module').then((m) => m.PedidosModule),
+    canActivate: [login],
+  },
   {
     path: 'empleados',
-    loadChildren: ()=> import('./containers/empleados/empleados.module').then( m=> m.EmpleadosModule),
-    canActivate: [login]
-    },
+    loadChildren: () =>
+      import('./containers/empleados/empleados.module').then((m) => m.EmpleadosModule),
+    canActivate: [login],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {};
+export class AppRoutingModule {}
