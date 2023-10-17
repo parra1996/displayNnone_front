@@ -15,7 +15,7 @@
             <div>
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName='password'>
+                    <input type="password" formControlName='password'>
                 </mat-form-field>
                   <div [hidden]="password.valid || password.pristine"> 
                     <span style="color: red;" *ngIf="password?.errors?.['required'] ">
