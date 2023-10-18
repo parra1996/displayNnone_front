@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
-import { cloudUrl, createHeader, localUrl } from 'src/app/utils';
+import { cloudUrl, createHeader } from 'src/app/utils';
 import { EmpresaMessage, EmpresaType } from './empresas.types';
 
 @Injectable({
