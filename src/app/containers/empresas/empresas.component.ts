@@ -19,6 +19,7 @@ export class EmpresasComponent implements OnInit {
   public tableRows = ['name', 'updateName', 'zip', 'updateZip', 'delete', 'update'];
   public companies: EmpresaType[] = [];
   public newCompanie: FormGroup;
+  public companyMessage: string = '';
 
   constructor(
     private empresaService: EmpresaService,
@@ -49,14 +50,16 @@ export class EmpresasComponent implements OnInit {
 
   public deleteCompanie(data: number) {
     this.empresaService.deleteOrder(data).subscribe({
-      next: (orderDelete) => {},
+      next: (orderDelete) => {
+        this.companyMessage = orderDelete.message;
+      },
       error: (orderDeleteError) => {
         return orderDeleteError;
       },
       complete: () => {
         this.bringCompanies();
         this.snackbar.open({
-          message: 'Companie deleted',
+          message: this.companyMessage,
         });
       },
     });
@@ -68,7 +71,9 @@ export class EmpresasComponent implements OnInit {
       zip: this.body.zip.value as string,
     };
     this.empresaService.updateCompanie(data, body).subscribe({
-      next: (companieDelete) => {},
+      next: (companieUpdated) => {
+        this.companyMessage = companieUpdated.message;
+      },
       error: (orderDeleteError) => {
         console.log(orderDeleteError);
       },
@@ -76,7 +81,7 @@ export class EmpresasComponent implements OnInit {
         this.bringCompanies();
         this.body.name.reset();
         this.body.zip.reset();
-        this.snackbar.open({ message: 'Empresa Actualizada' });
+        this.snackbar.open({ message: this.companyMessage});
       },
     });
   }
@@ -84,15 +89,19 @@ export class EmpresasComponent implements OnInit {
   public createCompanie(): void {
     this.isLoading = true;
     this.empresaService.createOrder(this.newCompanie.value).subscribe({
-      next: (data) => {},
+      next: (data) => {
+        this.companyMessage = data.message;
+        console.log(typeof data);
+      },
       error: (error) => {
         this.isLoading = false;
-        console.log(error);
+        this.snackbar.open({ message: error.message });
       },
       complete: () => {
         this.isLoading = false;
         this.bringCompanies();
         this.newCompanie.reset();
+        this.snackbar.open({ message: this.companyMessage });
       },
     });
   }

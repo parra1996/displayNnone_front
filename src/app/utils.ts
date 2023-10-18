@@ -13,3 +13,4 @@ export const transformDate = (date: string) => {
 };
 
 export const cloudUrl = 'https://displaynone-back.onrender.com';
+export const localUrl = 'http://localhost:5000';

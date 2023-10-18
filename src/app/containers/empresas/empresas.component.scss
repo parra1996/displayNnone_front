@@ -32,13 +32,10 @@
 }
 
 .companyTable {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-height: 25em;
-  overflow-y: auto;
+  width: auto;
+  overflow-y: scroll;
   height: 30em;
+  margin-bottom: 2em;
 }
 
 form {
@@ -46,22 +43,16 @@ form {
   flex-wrap: wrap;
 }
 
+table {
+  width: auto;
+  border-collapse: collapse;
+}
+
 th,
 td {
   border: 1px solid black;
   padding: 5px;
   text-align: center;
-  max-width: 200px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-thead {
-  position: sticky;
-  top: 0;
-  background-color: #f0f0f0;
-  z-index: 1;
 }
 
 .marginField {

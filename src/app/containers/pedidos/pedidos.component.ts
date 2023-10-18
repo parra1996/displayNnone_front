@@ -1,8 +1,9 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PedidosServiceService } from './pedidos-service.service';
 import { transformDate } from 'src/app/utils';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PedidoInterface } from './pedidos.type';
+import { SnackbarService } from 'src/app/snackbar.service';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -10,8 +11,9 @@ import { PedidoInterface } from './pedidos.type';
 })
 export class PedidosComponent implements OnInit {
   public title: string = 'Envios';
-  isLoading: boolean = false;
+  public isLoading: boolean = false;
   public orders: PedidoInterface[] = [];
+  private pedidosMessage: string = '';
   public tableRows = [
     'clientName',
     'addressee',
@@ -26,7 +28,9 @@ export class PedidosComponent implements OnInit {
   public orderForm: FormGroup;
   public transformDate = transformDate;
 
-  constructor(private pedidoService: PedidosServiceService) {
+  constructor(private pedidoService: PedidosServiceService,
+    private snackbar : SnackbarService
+    ) {
     this.orderForm = new FormGroup({
       direction: new FormControl(),
       zip: new FormControl(),
@@ -68,7 +72,10 @@ export class PedidosComponent implements OnInit {
     this.isLoading = true;
     this.calculateOrder(this.orderForm.value);
     this.pedidoService.createOrder(this.orderForm.value).subscribe({
-      next: (data) => {},
+      next: (data) => {
+        this.pedidosMessage = data.message;
+        console.log(data);
+      },
       error: (error) => {
         this.isLoading = false;
         console.log(error);
@@ -77,6 +84,9 @@ export class PedidosComponent implements OnInit {
         this.isLoading = false;
         this.bringOrders();
         this.orderForm.reset();
+        this.snackbar.open({
+          message: this.pedidosMessage
+        });
       },
     });
   }

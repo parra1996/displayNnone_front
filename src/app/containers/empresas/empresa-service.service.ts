@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
-import { cloudUrl, createHeader } from 'src/app/utils';
-import { EmpresaType } from './empresas.types';
+import { cloudUrl, createHeader, localUrl } from 'src/app/utils';
+import { EmpresaMessage, EmpresaType } from './empresas.types';
 
 @Injectable({
   providedIn: 'root',
@@ -13,35 +13,35 @@ export class EmpresaService {
   private url = `${cloudUrl}/company`;
 
   public bringCompanies() {
-    return this.empresaService.get<any>(this.url).pipe(
+    return this.empresaService.get<EmpresaType[]>(this.url).pipe(
       catchError((error) => {
         return throwError(() => new Error(error));
       }),
     );
   }
 
-  public createOrder(data: EmpresaType): Observable<string> {
-    return this.empresaService.post<string>(this.url, data, createHeader()).pipe(
+  public createOrder(data: EmpresaType): Observable<EmpresaMessage> {
+    return this.empresaService.post<EmpresaMessage>(this.url, data, createHeader()).pipe(
+      map((data:EmpresaMessage) => {
+        return data;
+      }),
+    );
+  }
+
+  public deleteOrder(data: number): Observable<EmpresaMessage> {
+    const altUrl = `${cloudUrl}/company/${data}`;
+
+    return this.empresaService.delete<EmpresaMessage>(altUrl, createHeader()).pipe(
       map((data) => {
         return data;
       }),
     );
   }
 
-  public deleteOrder(data: number): Observable<any> {
+  public updateCompanie(data: number, body: EmpresaType): Observable<EmpresaMessage> {
     const altUrl = `${cloudUrl}/company/${data}`;
-
-    return this.empresaService.delete<string>(altUrl, createHeader()).pipe(
-      map((data) => {
-        return data;
-      }),
-    );
-  }
-
-  public updateCompanie(data: number, body: EmpresaType): Observable<any> {
-    const altUrl = `${cloudUrl}/company/${data}`;
-    return this.empresaService.put<string>(altUrl, body, createHeader()).pipe(
-      map((data) => {
+    return this.empresaService.put<EmpresaMessage>(altUrl, body, createHeader()).pipe(
+      map((data:EmpresaMessage) => {
         return data;
       }),
     );

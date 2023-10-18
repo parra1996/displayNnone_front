@@ -23,7 +23,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     quotes: ['error', 'single'],
-    'no-unused-vars': ['error', { vars: 'all', args: 'after-used' }],
+    'no-unused-vars': ['error', { vars: 'all', args: 'none' }],
      semi: ['error', 'always'],
   },
 };

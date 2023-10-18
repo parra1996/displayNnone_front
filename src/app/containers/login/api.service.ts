@@ -1,19 +1,18 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpHeaderResponse,
-  HttpHeaders,
 } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, throwError, catchError, BehaviorSubject } from 'rxjs';
 import { UserData, loginData } from './login.types';
-import { cloudUrl, createHeader } from 'src/app/utils';
+import { cloudUrl, localUrl } from 'src/app/utils';
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService implements OnDestroy {
   userData = new BehaviorSubject<any>(null);
   private url = `${cloudUrl}/users/@`;
+  // private url = `${cloudUrl}/users/@`;
 
   constructor(private http: HttpClient) {}
 

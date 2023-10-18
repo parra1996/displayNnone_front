@@ -20,3 +20,7 @@ export interface NewPedidoInterface {
   weight: number;
   zip: string;
 }
+
+export interface PedidoMessage {
+  message:string
+}

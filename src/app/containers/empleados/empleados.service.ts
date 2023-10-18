@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, catchError, throwError, map } from 'rxjs';
-import { cloudUrl, createHeader } from 'src/app/utils';
+import { Injectable } from '@angular/core';
+import {  catchError, throwError } from 'rxjs';
+import { cloudUrl,  } from 'src/app/utils';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,9 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, catchError, throwError, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { LoginService } from '../login/api.service';
-import { cloudUrl, createHeader } from 'src/app/utils';
-import { NewPedidoInterface } from './pedidos.type';
+import { cloudUrl, createHeader, localUrl } from 'src/app/utils';
+import { NewPedidoInterface, PedidoInterface, PedidoMessage } from './pedidos.type';
 
 @Injectable({
   providedIn: 'root',
@@ -32,26 +32,26 @@ export class PedidosServiceService {
     });
   }
 
-  public getOrders(): Observable<any> {
-    return this.httpPedido.get<string>(this.url).pipe(
-      catchError((error) => {
-        return throwError(() => new Error(error));
-      }),
-    );
-  }
-
-  public deleteOrder(data: number): Observable<any> {
-    const altUrl = `${cloudUrl}/order/${data}`;
-    return this.httpPedido.delete<string>(altUrl, createHeader()).pipe(
+  public getOrders(): Observable<PedidoInterface[]> {
+    return this.httpPedido.get<PedidoInterface[]>(this.url).pipe(
       map((data) => {
         return data;
       }),
     );
   }
 
-  public createOrder(data: NewPedidoInterface): Observable<any> {
-    return this.httpPedido.post<string>(this.url, data, createHeader()).pipe(
+  public deleteOrder(data: number): Observable<PedidoMessage> {
+    const altUrl = `${cloudUrl}/order/${data}`;
+    return this.httpPedido.delete<PedidoMessage>(altUrl, createHeader()).pipe(
       map((data) => {
+        return data;
+      }),
+    );
+  }
+
+  public createOrder(data: NewPedidoInterface): Observable<PedidoMessage> {
+    return this.httpPedido.post<PedidoMessage>(this.url, data, createHeader()).pipe(
+      map((data:PedidoMessage) => {
         return data;
       }),
     );
